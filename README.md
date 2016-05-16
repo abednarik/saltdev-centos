@@ -3,7 +3,6 @@ Salt Development Environment in Vagrant
 
 Personal Vagrantfile for SaltStack Development in CentOS 7.
 
-
 Instructions
 ------------
 
@@ -11,7 +10,7 @@ Run the following commands in a terminal. Git, VirtualBox and Vagrant must
 already be installed.
 
     git clone git@github.com:abednarik/saltdev-centos.git
-    cd saltdev-centos6
+    cd saltdev-centos
 
 Edit Vagrantfile adding/removing desired configuration like vim or screen.
 Also make sure to update your current salt source path and public ssh key.
@@ -39,7 +38,7 @@ Remember to accept minion keys after first minion run.
 There is a placeholder state in /srv/salt called source.sls. Just put the content
 you want to test and run
 
-    salt centos state.apply source
+    salt centos state.apply default
 
 This is heavily based on [salt-vagrant-demo](https://github.com/UtahDave/salt-vagrant-demo) following
 official [Salt Development Docs](https://docs.saltstack.com/en/develop/topics/development/index.html)
