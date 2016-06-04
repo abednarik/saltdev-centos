@@ -6,39 +6,50 @@ Personal Vagrantfile for SaltStack Development in CentOS 7.
 Instructions
 ------------
 
-Run the following commands in a terminal. Git, VirtualBox and Vagrant must
+1. Run the following commands in a terminal. Git, VirtualBox and Vagrant must
 already be installed.
 
+    ```
     git clone git@github.com:abednarik/saltdev-centos.git
     cd saltdev-centos
+    ```
+    
+2. Edit Vagrantfile to update your local salt repository path.and
+launch centos instance
 
-Edit Vagrantfile adding/removing desired configuration like vim or screen.
-Also make sure to update your current salt source path and public ssh key.
-Finally launch ubuntu instance
-
+    ```
     vagrant up
+    ```
 
-Finally login as vagrant user and install salt using pip in editable module
+3. Finally login as vagrant user and install salt using pip in editable module
 
+    ```
     vagrant ssh
     sudo su -
     cd salt  
     pip install -e .
+    ```
 
-For developing and debugging I use tmux to run salt-master and salt-minion
+4. For developing and debugging I use tmux to run salt-master and salt-minion
 in foreground in error mode [ I mostly add log.error when I want to debug something ]
 
+    ```
     sudo salt-master -l error
     sudo salt-minion -l error
+    ```
 
-Remember to accept minion keys after first minion run.
+5. Check if everything went fine
 
-   salt-keys -A
+    ```
+    salt '*' test.ping
+    ```
 
-There is a placeholder state in /srv/salt called source.sls. Just put the content
+There is a placeholder state in /srv/salt called default.sls. Just put the content
 you want to test and run
 
-    salt centos state.apply default
+    ```
+    salt 'salt' state.apply default
+    ```
 
 This is heavily based on [salt-vagrant-demo](https://github.com/UtahDave/salt-vagrant-demo) following
 official [Salt Development Docs](https://docs.saltstack.com/en/develop/topics/development/index.html)
